@@ -13,22 +13,6 @@ namespace ASB.Publisher.Core
     public static class Publish
     {
 
-        //Duplicate detection [set flag in SB topic in SB Explorer]
-        //Autoforward [set flag in SB topic in SB Explorer]
-        //Batching [ok]
-        //Deferral [ok (check Session)]
-        //Durable sender [explain only]
-        //Geo replication [ok]
-        //Partitioning [ok]
-        //Creating priority subscriptions [ok]
-        //Sessions [ok]
-        //SessionStates [ok]
-        //ScheduledMessage [ok]
-        //Correlation (explain multiple corr concepts) [ok]
-        //Message browsing [ok]
-        //Transactions (explain only)
-        //Archiving [ok]
-
         #region Topics/Subscriptions
 
         public static Task PublishToTopic(string ConnectionString, string TopicName)

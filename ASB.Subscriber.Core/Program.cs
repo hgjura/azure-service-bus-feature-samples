@@ -93,7 +93,7 @@ namespace ASB.Subscriber.Core
             .AddMenuItem("D", "Receive message from dead-letter", ConsoleColor.Green, () => Wrapper(Receive.ListenToTopicDeadLetterSubscriptionsAsync, _connectionString, "topic_quotedistribution", "subquotedist_catchALL", _log))
             .AddMenuItem("W", "Receive message with priority", ConsoleColor.Green, () => Wrapper(Receive.ListenToTopicSubscriptionsWithPriorityAsync, _connectionString, "topic_quotedistribution", new List<string>() { "priority1", "priority2", "priority3" }, _log))
             .AddMenuItem("R", "Browse messages from subscription", ConsoleColor.Green, () => Wrapper(Receive.ListenToTopicSubscriptionsBrowsingAsync, _connectionString, "topic_quotedistribution", "subquotedist_catchNASDAQ", _log))
-            .AddMenuItem("I", "Prefetch messages from subscription", ConsoleColor.Green, () => Wrapper(Receive.ListenToTopicSubscriptionsPrefetchAsync, _connectionString, "topic_quotedistribution", "subquotedist_catchALL", _log))
+            .AddMenuItem("I", "Pre-fetch messages from subscription", ConsoleColor.Green, () => Wrapper(Receive.ListenToTopicSubscriptionsPrefetchAsync, _connectionString, "topic_quotedistribution", "subquotedist_catchALL", _log))
             .AddMenuItem("S", "Receive messages with session", ConsoleColor.Green, () => Wrapper(Receive.ListenToTopicSessionSubscriptionsAsync, _connectionString, "topic_quotedistribution_with_session", "subquotedist_catchALL", 10, _log))
             .AddMenuItem("Y", "Receive messages with session state", ConsoleColor.Green, () => Wrapper(Receive.ListenToTopicSessionStateSubscriptionsAsync, _connectionString, "topic_quotedistribution_with_session", "subquotedist_catchALL", 10, _log))
 

@@ -1,14 +1,8 @@
-﻿using Newtonsoft.Json;
-using Serilog;
+﻿using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Transactions;
-
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
 using ASB.Common.Core;
@@ -18,15 +12,6 @@ namespace ASB.Subscriber.Core
     public static class Receive
     {
 
-        //Duplicate detection [set flag in SB topic in SB Explorer]
-        //Auto-forward [set flag in SB topic in SB Explorer]
-        //Dead-letter [ok]
-        //Creating priority subscriptions [ok]
-        //Message browsing [ok]
-        //Message prefetch [ok]
-        //Sessions [ok]
-        //SessionStates [ok]
-        //Archive [ok]
 
         #region Topics
 
