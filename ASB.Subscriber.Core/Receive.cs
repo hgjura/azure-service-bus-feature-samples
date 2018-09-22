@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
 using ASB.Common.Core;
+using System.Drawing;
 
 namespace ASB.Subscriber.Core
 {
@@ -20,7 +21,7 @@ namespace ASB.Subscriber.Core
             var cts = new CancellationTokenSource();
             List<Task> subs = new List<Task>();
 
-            Subscriptions.ForEach((s) => subs.Add(ReceiveMessages_FromTopicSubscriptionsAsync(new SubscriptionClient(ConnectionString, TopicName, s), cts.Token, ConsoleColor.Cyan)));
+            Subscriptions.ForEach((s) => subs.Add(ReceiveMessages_FromTopicSubscriptionsAsync(new SubscriptionClient(ConnectionString, TopicName, s), cts.Token, Utils.RandomColor())));
 
             var allListeneres = Task.WhenAll(subs);
 
@@ -33,7 +34,7 @@ namespace ASB.Subscriber.Core
                     allListeneres
                 );
         }
-        private static async Task ReceiveMessages_FromTopicSubscriptionsAsync(SubscriptionClient client, CancellationToken token, ConsoleColor color)
+        private static async Task ReceiveMessages_FromTopicSubscriptionsAsync(SubscriptionClient client, CancellationToken token, Color color)
         {
             var doneReceiving = new TaskCompletionSource<bool>();
 
@@ -48,7 +49,7 @@ namespace ASB.Subscriber.Core
                 {
                     try
                     {
-                        if (ProcessMessages(message, ConsoleColor.White))
+                        if (ProcessMessages(message, color))
                         {
                             await client.CompleteAsync(message.SystemProperties.LockToken);
                         }
@@ -137,7 +138,7 @@ namespace ASB.Subscriber.Core
             var cts = new CancellationTokenSource();
             List<Task> subs = new List<Task>();
 
-            Subscriptions.ForEach((s) => subs.Add(ReceiveMessages_FromTopicSubscriptionsWithPriorityAsync(new SubscriptionClient(ConnectionString, TopicName, s), cts.Token, ConsoleColor.Cyan)));
+            Subscriptions.ForEach((s) => subs.Add(ReceiveMessages_FromTopicSubscriptionsWithPriorityAsync(new SubscriptionClient(ConnectionString, TopicName, s), cts.Token, Utils.RandomColor())));
 
             var allListeneres = Task.WhenAll(subs);
 
@@ -150,7 +151,7 @@ namespace ASB.Subscriber.Core
                     allListeneres
                 );
         }
-        private static async Task ReceiveMessages_FromTopicSubscriptionsWithPriorityAsync(SubscriptionClient client, CancellationToken token, ConsoleColor color)
+        private static async Task ReceiveMessages_FromTopicSubscriptionsWithPriorityAsync(SubscriptionClient client, CancellationToken token, Color color)
         {
             var doneReceiving = new TaskCompletionSource<bool>();
 
@@ -202,7 +203,7 @@ namespace ASB.Subscriber.Core
                     // If the returned message value is null, we have reached the bottom of the log
                     if (message != null)
                     {
-                        ProcessMessages(message, ConsoleColor.White);
+                        ProcessMessages(message, Color.White);
                     }
                     else
                     {
@@ -241,7 +242,7 @@ namespace ASB.Subscriber.Core
                     // If the returned message value is null, we have reached the bottom of the log
                     if (message != null)
                     {
-                        ProcessMessages(message, ConsoleColor.White);
+                        ProcessMessages(message, Color.White);
                     }
                     else
                     {
@@ -298,7 +299,7 @@ namespace ASB.Subscriber.Core
                     {
                         Utils.ConsoleWrite($"[{message.SessionId}]\n", ConsoleColor.Blue, ConsoleColor.Red);
                         
-                        if (ProcessMessages(message, ConsoleColor.White))
+                        if (ProcessMessages(message, Color.White))
                         {
                             await session.CompleteAsync(message.SystemProperties.LockToken);
                             if(((int)message.UserProperties["Count"]) == EndCount)
@@ -362,7 +363,7 @@ namespace ASB.Subscriber.Core
 
                         if ((int)message.UserProperties["Count"] == session_state.LastProcessedCount + 1)  //check if message is next in the sequence
                         {
-                            if (ProcessMessages(message, ConsoleColor.White))
+                            if (ProcessMessages(message, Color.White))
                             {
                                 await session.CompleteAsync(message.SystemProperties.LockToken);
                                 if (((int)message.UserProperties["Count"]) == EndCount)
@@ -398,15 +399,19 @@ namespace ASB.Subscriber.Core
         #endregion
 
         #region Helper functions
-        private static bool ProcessMessages(Message message, ConsoleColor color)
+        static object lockObj = new object();
+        private static bool ProcessMessages(Message message, Color color)
         {
             if (message.Label == "Stock")
             {
                 var stock = Utils.Deserialize<Stock>(message.Body);
 
-                var s = $"\t\t\t\tMessage received: \n\t\t\t\t\t\tMessageId = {message.MessageId}, \n\t\t\t\t\t\tSequenceNumber = {message.SystemProperties.SequenceNumber}, \n\t\t\t\t\t\tEnqueuedTimeUtc = {message.SystemProperties.EnqueuedTimeUtc},\n\t\t\t\t\t\tContent: {stock}";
+                lock (lockObj)
+                {
+                    var s = $"\nMessage received: \n\t\t\t\t\t\tMessageId = {message.MessageId}, \n\t\t\t\t\t\tSequenceNumber = {message.SystemProperties.SequenceNumber}, \n\t\t\t\t\t\tEnqueuedTimeUtc = {message.SystemProperties.EnqueuedTimeUtc},\n\t\t\t\t\t\tContent: {stock}";
 
-                Utils.ConsoleWrite(s, ConsoleColor.Blue, color);
+                    Utils.ConsoleWrite(s, color);
+                }
 
                 return true;
             }
@@ -430,7 +435,7 @@ namespace ASB.Subscriber.Core
                     //-------------------------------
                     var deferredMessage = await session.ReceiveDeferredMessageAsync(seq2);
 
-                    if (ProcessMessages(deferredMessage, ConsoleColor.White))
+                    if (ProcessMessages(deferredMessage, Color.White))
                     {
                         await session.CompleteAsync(deferredMessage.SystemProperties.LockToken);
                         session_state.LastProcessedCount = ((int)deferredMessage.UserProperties["Count"]);

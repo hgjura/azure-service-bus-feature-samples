@@ -26,6 +26,21 @@ namespace ASB.Common.Core
                         0xFF00FF, //Magenta = 13
                         0xFFFF00, //Yellow = 14
                     };
+        static ConsoleColor[] consoleColors = {
+                        ConsoleColor.DarkBlue,
+                        ConsoleColor.DarkGreen,
+                        ConsoleColor.DarkCyan,
+                        ConsoleColor.DarkRed,
+                        ConsoleColor.DarkMagenta,
+                        ConsoleColor.DarkYellow,
+                        ConsoleColor.DarkGray,
+                        ConsoleColor.Blue,
+                        ConsoleColor.Green,
+                        ConsoleColor.Cyan,
+                        ConsoleColor.Red,
+                        ConsoleColor.Magenta,
+                        ConsoleColor.Yellow
+                    };
         public static Color RandomColor()
         {
             return Color.FromArgb(cColors[new Random().Next(0, cColors.Length-1)]);
@@ -33,6 +48,15 @@ namespace ASB.Common.Core
         public static Color GetColor(int X)
         {
             return X >= cColors.Length ? Color.FromArgb(cColors[cColors.Length % X]) : Color.FromArgb(cColors[X]);
+        }
+
+        public static ConsoleColor RandomConsoleColor()
+        {
+            return consoleColors[new Random().Next(0, consoleColors.Length - 1)];
+        }
+        public static ConsoleColor GetConsoleColor(int X)
+        {
+            return X >= consoleColors.Length ? consoleColors[consoleColors.Length % X] : consoleColors[X];
         }
         public static void ConsoleWriteHeader(string Header, ConsoleColor Color)
         {
@@ -47,7 +71,14 @@ namespace ASB.Common.Core
 
         public static void ConsoleWrite(string Text, ConsoleColor BackgroundColor = ConsoleColor.Black, ConsoleColor ForegroundColor = ConsoleColor.White)
         {
-            ConsoleRenderer.RenderDocument(new Document(new Span($"{Text}") { Color = ForegroundColor, Background = BackgroundColor }));
+            //ConsoleRenderer.RenderDocument(new Document(new Span($"{Text}") { Color = ForegroundColor, Background = BackgroundColor }, new Span(Environment.NewLine)));
+            Colorful.Console.WriteLine(Text, ForegroundColor);
+        }
+
+        public static void ConsoleWrite(string Text, Color color)
+        {
+            //ConsoleRenderer.RenderDocument(new Document(new Span($"{Text}") { Color = ForegroundColor, Background = BackgroundColor }, new Span(Environment.NewLine)));
+            Colorful.Console.WriteLine(Text, color);
         }
 
         public static byte[] Serialize<T>(T Item)

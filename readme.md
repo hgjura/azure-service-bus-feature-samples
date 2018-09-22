@@ -27,7 +27,7 @@ The two projects make use of the following libraries/projects:
 #### Links & other Github repos
 - [Official samples repo](https://github.com/Azure/azure-service-bus/tree/master/samples). Big thanks to [@clemensv](https://github.com/clemensv) and his team, for keeping the samples site orderly and up-to-date. This is the full encyclopedia of samples/features of the Service Bus. My project is intended to be a crunched-down version of select features, which I privately use for training and demo purposes.
 - [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) official page. This is where to get started with everything Service Bus.
-- [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer). The tool _par excellence_ to use and manage Azure Service Bus. Created and tirelessly managed by [Paolo Salvatori](https://github.com/paolosalvatori), whom deserved all the thanks and recognition of all ASB users worldwide. Without this tool, any attempt to manage and debug Service Bus, is simply futile.    
+- [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer). The tool _par excellence_ to use and manage Azure Service Bus. Created, and tirelessly managed, by [Paolo Salvatori](https://github.com/paolosalvatori), whom deserves all the thanks and recognition of all ASB users worldwide. Without this tool, any attempt to manage and debug Service Bus, is simply futile.    
 - [Microsoft.Azure.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus/). The **new** SDK to work with ASB. Greatly different from the **old** SDK (Microsoft.ServiceBus.Messaging), which is not to be used for any future projects, and most likely on its way to being deprecated. The blogosphere is full of blog and samples that use the old SDK. Unfortunately, most are no longer compatible with the new SDK, and the new way of working with Service Bus. Make sure to distinguish it by the way of referencing of the namespace on top of code files. The major give away: the **new** SDK uses ```Message``` object to create ASB messages, the **old** SDK, uses ```MessageBroker```. 
 
 
@@ -53,7 +53,7 @@ There is an additional feature that I will include in some future builds, which 
 1. [Create a ASB namespace](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-create-namespace-portal) in Azure portal.
 2. Create an Azure Service Principal in order to make the deployment of ASB artifacts work. Powershell scripts for this are in the ASP.Common.Core/Assets folder.
 3. Add the results of the two steps above to the App.config file in both Publisher and Subscriber projects.
-4. In the App.config file, complete the QueueName entry with the name of primary topic you will use. The ARM deployment code will use this as a trigger. If it already exists in ASB, it will skip creation, otherwise it will create all the ASB artifacts. 
+4. In the App.config file, complete the "QueueName" entry with the name of primary topic you will use. The ARM deployment code will use this as a trigger. If it already exists in ASB, it will skip creation, otherwise it will create all the ASB artifacts. 
 
 ### Usage
 You have the option to start the Publisher and Subscriber one after the other and see them in action.
