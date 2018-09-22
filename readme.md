@@ -12,7 +12,9 @@ The purpose of this project is to illustrate, with code, some of the features of
 
 ### Projects
 **ASB.Common.Core**: This is a .NET standard library that collects some of the types/entities used in the other two (publisher, subscriber) projects. Check its internal readme for details.
+
 **ASB.Publisher.Core**: This is a .NET Core 2.1 console app. It is the publisher agent that adds various messages into the ASB. The console menu will guide on what type of messages and for what feature will be inserted into ASB.  
+
 **ASB.Subscriber.Core**: This is a .NET Core 2.1 console app. It is the subscriber agent that will consume messages from various topics/subscriptions of the ASB.
 
 ## List of Service Bus Features 
@@ -40,6 +42,7 @@ There is an additional feature that I will include in some future builds, which 
 
 ### Usage
 You have the option to start the Publisher and Subscriber one after the other and see them in action.
+
 Or, alternatively, you can start them side-by-side (Ctrl-F5) and follow the menu commands.
 
 Enjoy! 
