@@ -1,1 +1,1 @@
-﻿
+﻿## ASB.Common.Core

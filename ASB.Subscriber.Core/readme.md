@@ -1,1 +1,1 @@
-﻿
+﻿## ASB.Subscriber.Core
