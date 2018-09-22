@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASB.Publisher.Core", "ASB.Publisher.Core\ASB.Publisher.Core.csproj", "{67B4BC4C-2FFF-4C2A-B150-5677188A3732}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASB.Subscriber.Core", "ASB.Subscriber.Core\ASB.Subscriber.Core.csproj", "{34506B62-B167-4AE9-B7D2-86652AD22E3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASB.Common.Core", "ASB.Common.Core\ASB.Common.Core.csproj", "{D7F58348-A18C-4470-9453-12EA265F3C39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66F0A83B-989D-4E09-BE8B-ED21D1EAA3BD}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67B4BC4C-2FFF-4C2A-B150-5677188A3732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B4BC4C-2FFF-4C2A-B150-5677188A3732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B4BC4C-2FFF-4C2A-B150-5677188A3732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B4BC4C-2FFF-4C2A-B150-5677188A3732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34506B62-B167-4AE9-B7D2-86652AD22E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34506B62-B167-4AE9-B7D2-86652AD22E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34506B62-B167-4AE9-B7D2-86652AD22E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34506B62-B167-4AE9-B7D2-86652AD22E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F58348-A18C-4470-9453-12EA265F3C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F58348-A18C-4470-9453-12EA265F3C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F58348-A18C-4470-9453-12EA265F3C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F58348-A18C-4470-9453-12EA265F3C39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\TransientFaultHandling.Core.5.1.1209.0\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.TransientFaultHandling.5.1.1212.0\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.TransientFaultHandling.5.1.1212.0\DesignTime
+		SolutionGuid = {091FD3B5-B5AC-4516-957C-524FA911A415}
+	EndGlobalSection
+EndGlobal
